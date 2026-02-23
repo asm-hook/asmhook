@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>asmhook</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
+<style>
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Courier Prime', monospace;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    margin: 6px 0;
+    cursor: pointer;
+    width: 100px;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+.section {
+    display: none;
+    position: absolute;
+    top: 5%;
+    width: 100%;
+}
+
+.song {
+    margin: 30px 0;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    margin: 4px 0;
+}
+
+.link-btn:hover {
+    text-decoration: underline;
+}
+
+.frame {
+    display: none;
+    margin-top: 10px;
+}
+
+iframe {
+    width: 320px;
+    height: 180px;
+    border: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="home" id="home">
+    <h1>asmhook</h1>
+    <button onclick="showSection('music')">music</button>
+    <button onclick="showSection('shop')">shop</button>
+    <button onclick="window.location.href='play.html'">play</button>
+</div>
+
+<!-- MUSIC -->
+<div id="music" class="section">
+    <h1>music</h1>
+
+    <!-- SONG  -->
+    <div class="song">
+        <p>DUMMY</p>
+
+        <button class="link-btn" onclick="toggleFrame('DUMMY')">watch</button>
+        <div id="DUMMY" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/swWuTtf97BU"></iframe>
+        </div>
+    </div>
+
+    <!-- SONG 2 -->
+    <div class="song">
+        <p>BABUSHKA</p>
+
+        <button class="link-btn" onclick="toggleFrame('BABUSHKA')">watch</button>
+        <div id="BABUSHKA" class="frame">
+            <iframe src="https://www.youtube.com/embed/-LPPFvPx3rU"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>DEEP POCKETS</p>
+
+        <button class="link-btn" onclick="toggleFrame('DEEP POCKETS')">watch</button>
+        <div id="DEEP POCKETS" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/mCnWGbCqXKY"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>GAME MASTER</p>
+
+        <button class="link-btn" onclick="toggleFrame('GAME MASTER')">watch</button>
+        <div id="GAME MASTER" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/1UEMO5wOe5E"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>ROCKERFELLA</p>
+
+        <button class="link-btn" onclick="toggleFrame('ROCKERFELLA')">watch</button>
+        <div id="ROCKERFELLA" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/HnNom3PeK08"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>Achilles' Heel</p>
+
+        <button class="link-btn" onclick="toggleFrame('Achilles Heel1')">listen</button>
+        <div id="Achilles Heel1" class="frame">
+            <!-- Replace with your FFM embed link -->
+            <iframe src="https://ffm.to/p986qw4"></iframe>
+        </div>
+
+        <button class="link-btn" onclick="toggleFrame('Achilles Heel')">watch</button>
+        <div id="Achilles Heel" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/4z051kuYFBA"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>Tell Me What You See</p>
+
+        <button class="link-btn" onclick="toggleFrame('Tell Me What You See1')">listen</button>
+        <div id="Tell Me What You See1" class="frame">
+            <!-- Replace with your FFM embed link -->
+            <iframe src="https://ffm.to/ddkpoer"></iframe>
+        </div>
+
+        <button class="link-btn" onclick="toggleFrame('Tell Me What You See')">watch</button>
+        <div id="Tell Me What You See" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/nNrDEAeTv58"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>Follow The Rainbow</p>
+
+        <button class="link-btn" onclick="toggleFrame('FTR1')">listen</button>
+        <div id="FTR1" class="frame">
+            <!-- Replace with your FFM embed link -->
+            <iframe src="https://ffm.to/wqd8ebr"></iframe>
+        </div>
+
+        <button class="link-btn" onclick="toggleFrame('Follow The Rainbow')">watch</button>
+        <div id="Follow The Rainbow" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/HuUiucNyuYA"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>She's just a friend</p>
+
+        <button class="link-btn" onclick="toggleFrame('Shes just a friend')">watch</button>
+        <div id="Shes just a friend" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/nGZL6GAm8zM"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>2D</p>
+
+        <button class="link-btn" onclick="toggleFrame('2D')">watch</button>
+        <div id="2D" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/Omwypkbi6Og"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>5 LEAF CLOVER</p>
+
+        <button class="link-btn" onclick="toggleFrame('5 LEAF CLOVER')">watch</button>
+        <div id="5 LEAF CLOVER" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/99F28wkvdZ8"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>GREATFUL/LISTEN/OKAY</p>
+
+        <button class="link-btn" onclick="toggleFrame('GREATFUL')">watch</button>
+        <div id="GREATFUL" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/QWubk1LA64g"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>WOAH</p>
+
+        <button class="link-btn" onclick="toggleFrame('WOAH')">watch</button>
+        <div id="WOAH" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/00FBC992t4g"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>EVERYTHING</p>
+
+        <button class="link-btn" onclick="toggleFrame('EVERYTHING')">watch</button>
+        <div id="EVERYTHING" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/BYadyt2AKtI"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>Van Gogh</p>
+        
+        <button class="link-btn" onclick="toggleFrame('Van Gogh')">watch</button>
+        <div id="Van Gogh" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/VVPNPXBw9_A"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>LET IT GO</p>
+
+        <button class="link-btn" onclick="toggleFrame('LET IT GO')">watch</button>
+        <div id="LET IT GO" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/VE_USRKzqhs"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>MF DOOM FREESTYLE</p>
+
+        <button class="link-btn" onclick="toggleFrame('MF DOOM FREESTYLE')">watch</button>
+        <div id="MF DOOM FREESTYLE" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/IXD5a8oOfeM"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>NORTHWEST</p>
+
+        <button class="link-btn" onclick="toggleFrame('NORTHWEST')">watch</button>
+        <div id="NORTHWEST" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/OYVswi-yv1o"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>RENAISSANCE</p>
+
+        <button class="link-btn" onclick="toggleFrame('RENAISSANCE')">watch</button>
+        <div id="RENAISSANCE" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/_vgs_xtoYyE"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>DAYDREAMING</p>
+
+        <button class="link-btn" onclick="toggleFrame('DAYDREAMING1')">listen</button>
+        <div id="DAYDREAMING1" class="frame">
+            <!-- Replace with your FFM embed link -->
+            <iframe src="https://ffm.to/asmhook-daydreaming"></iframe>
+        </div>
+
+        <button class="link-btn" onclick="toggleFrame('DAYDREAMING')">watch</button>
+        <div id="DAYDREAMING" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/9GIgICsYPfo"></iframe>
+        </div>
+    </div>
+
+     <!-- SONG  -->
+    <div class="song">
+        <p>LE'ME BE FRANK</p>
+
+        <button class="link-btn" onclick="toggleFrame('LE ME BE FRANK1')">listen</button>
+        <div id="LE ME BE FRANK1" class="frame">
+            <!-- Replace with your FFM embed link -->
+            <iframe src="https://ffm.to/dbqyabl"></iframe>
+        </div>
+
+        <button class="link-btn" onclick="toggleFrame('LE ME BE FRANK')">watch</button>
+        <div id="LE ME BE FRANK" class="frame">
+            <!-- Replace VIDEO_ID -->
+            <iframe src="https://www.youtube.com/embed/PAmU26VItBg"></iframe>
+        </div>
+    </div>
+
+    <button onclick="goHome()">back</button>
+</div>
+
+<!-- SHOP -->
+<div id="shop" class="section">
+    <h1>shop</h1>
+    <img src="black wait tee.PNG" width="200">
+    <br>
+    <button style="margin-top:10px;">buy</button>
+    <br>
+     <img src="white wait tee.PNG" width="200">
+    <br>
+     <button style="margin-top:10px;">buy</button>
+    <br><br>
+    <button onclick="goHome()">back</button>
+</div>
+
+<script>
+function showSection(section) {
+    document.getElementById("home").style.display = "none";
+    document.getElementById(section).style.display = "block";
+}
+
+function goHome() {
+    document.getElementById("home").style.display = "flex";
+    document.getElementById("music").style.display = "none";
+    document.getElementById("shop").style.display = "none";
+}
+
+function toggleFrame(id) {
+    var frame = document.getElementById(id);
+    if (frame.style.display === "none" || frame.style.display === "") {
+        frame.style.display = "block";
+    } else {
+        frame.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
+
+
