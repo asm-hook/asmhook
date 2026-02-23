@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>don't wait</title>
+<style>
+body {
+    margin: 0;
+    background: white;
+    font-family: "Courier New", Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 { font-size: 14px; font-weight: normal; margin: 5px 0; }
+
+#score { position: absolute; top: 10px; left: 10px; font-size: 14px; }
+
+canvas { border: 1px solid black; display: block; }
+
+#controls { display: flex; gap: 10px; margin-top: 5px; }
+.controlBtn { padding: 6px 10px; border: 1px solid black; background: white; font-family: "Courier New", Courier, monospace; font-size: 12px; }
+
+#gameOver {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.smallBtn { margin-top: 8px; padding: 5px 10px; border: 1px solid black; background: white; font-family: "Courier New", Courier, monospace; font-size: 12px; cursor: pointer; text-decoration: none; }
+
+#backBtn { margin-top: 25px; padding: 5px 10px; border: 1px solid black; background: white; font-family: "Courier New", Courier, monospace; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<h1>don't wait</h1>
+<div id="score">00000</div>
+
+<canvas id="game" width="320" height="320"></canvas>
+
+<div id="controls">
+    <button class="controlBtn" onclick="move(-1)">◀</button>
+    <button class="controlBtn" onclick="move(1)">▶</button>
+</div>
+
+<div id="gameOver">
+    <div>game over</div>
+    <button class="smallBtn" onclick="startGame()">replay</button>
+    <a href="https://your-ffm-link-here.com" target="_blank" class="smallBtn">listen</a>
+</div>
+
+<button id="backBtn" onclick="window.history.back()">back</button>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+const scoreDisplay = document.getElementById("score");
+const gameOverScreen = document.getElementById("gameOver");
+
+let player, obstacles, startTime, speed, spawnTimer, running;
+
+function startGame() {
+    player = { x: 150, y: 300, size: 20 };
+    obstacles = [];
+    startTime = Date.now();
+    speed = 2.5;
+    spawnTimer = 0;
+    running = true;
+
+    scoreDisplay.textContent = "00000";
+    gameOverScreen.style.display = "none";
+
+    requestAnimationFrame(gameLoop);
+}
+
+function move(direction) {
+    if (!running) return;
+    player.x += direction * 20;
+    if (player.x < 0) player.x = 0;
+    if (player.x > canvas.width - player.size) player.x = canvas.width - player.size;
+}
+
+document.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") move(-1);
+    if (e.key === "ArrowRight") move(1);
+});
+
+function spawnObstacle() {
+    const size = 20;
+    const numBlocks = 2 + Math.floor(Math.random()*2); // 2–3 blocks
+    const minSpacing = 30; // minimum distance between blocks
+
+    let positions = [];
+    for (let i = 0; i < numBlocks; i++) {
+        let x;
+        let attempts = 0;
+        do {
+            x = Math.random() * (canvas.width - size);
+            attempts++;
+        } while (positions.some(px => Math.abs(px - x) < minSpacing) && attempts < 20);
+        positions.push(x);
+        obstacles.push({ x, y: -20, size });
+    }
+}
+
+function gameLoop() {
+    if (!running) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const seconds = Math.floor((Date.now() - startTime) / 1000);
+    scoreDisplay.textContent = seconds.toString().padStart(5, "0");
+
+    speed = 2.5 + seconds*0.15;
+
+    spawnTimer++;
+    if (spawnTimer > Math.max(15, 50 - seconds*1.5)) {
+        spawnObstacle();
+        spawnTimer = 0;
+    }
+
+    // Draw player
+    ctx.fillStyle = "black";
+    ctx.fillRect(player.x, player.y, player.size, player.size);
+
+    // Draw obstacles
+    obstacles.forEach(ob => {
+        ob.y += speed;
+        ctx.fillRect(ob.x, ob.y, ob.size, ob.size);
+
+        if (
+            ob.x < player.x + player.size &&
+            ob.x + ob.size > player.x &&
+            ob.y < player.y + player.size &&
+            ob.y + ob.size > player.y
+        ) {
+            endGame();
+        }
+    });
+
+    requestAnimationFrame(gameLoop);
+}
+
+function endGame() {
+    running = false;
+    gameOverScreen.style.display = "flex";
+}
+
+startGame();
+</script>
+
+</body>
+</html>
