@@ -16,6 +16,10 @@ body {
     height: 100vh;
     overflow: hidden;
 }
+    
+  html, body {
+  touch-action: manipulation; /* disables double-tap zoom */
+}
 
 h1 { font-size: 14px; font-weight: normal; margin: 5px 0; }
 
@@ -23,7 +27,7 @@ h1 { font-size: 14px; font-weight: normal; margin: 5px 0; }
 
 canvas { border: 1px solid black; display: block; }
 
-#controls { display: flex; gap: 80px; margin-top: 5px; }
+#controls { display: flex; gap: 100px; margin-top: 5px; }
 .controlBtn { padding: 6px 10px; border: 1px solid black; background: white; font-family: "Courier New", Courier, monospace; font-size: 12px; }
 
 #gameOver {
@@ -104,7 +108,7 @@ document.addEventListener("keydown", e => {
 function spawnObstacle() {
     const size = 20;
     const numBlocks = 2 + Math.floor(Math.random()*2); // 2–3 blocks
-    const minSpacing = 30; // minimum distance between blocks
+    const minSpacing = 50; // minimum distance between blocks
 
     let positions = [];
     for (let i = 0; i < numBlocks; i++) {
@@ -164,21 +168,12 @@ function endGame() {
 
 startGame();
     
-let lastTap = 0;
-document.addEventListener('touchend', function(e) {
-    const currentTime = new Date().getTime();
-    const tapLength = currentTime - lastTap;
-    if(tapLength < 300 && tapLength > 0){
-        e.preventDefault();
-    }
-    lastTap = currentTime;
-}, false);
-    
 </script>
 
 </body>
 
 </html>
+
 
 
 
