@@ -95,7 +95,7 @@ iframe {
 <div class="home" id="home">
     <h1>asmhook</h1>
     <button onclick="showSection('music')">music</button>
-    <button onclick="showSection('shopping')">shop</button>
+    <button onclick="showSection('shop')">shop</button>
     <button onclick="window.location.href='wait.html'">play</button>
 </div>
 
@@ -415,7 +415,7 @@ iframe {
 </div>
 
 <!-- SHOP -->
-<div id="shopping" class="section">
+<div id="shop" class="section">
     <h1>shop</h1>
     <img src="wait cover.jpeg" width="150">
      <h1>wait - digital ep</h1>
@@ -436,7 +436,7 @@ function showSection(section) {
 function goHome() {
     document.getElementById("home").style.display = "flex";
     document.getElementById("music").style.display = "none";
-    document.getElementById("shopping").style.display = "none";
+    document.getElementById("shop").style.display = "none";
 }
 
 function toggleFrame(id) {
